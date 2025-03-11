@@ -1,3 +1,4 @@
+/* 全体のレイアウト */
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -12,16 +13,18 @@ header {
     padding: 20px;
 }
 
+/* グリッドでボタンを並べる */
 .celebration-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 自動で列数を調整 */
+    gap: 20px; /* アイテム間の間隔 */
     margin-top: 30px;
 }
 
 .celebration-item {
     position: relative;
-    margin: 15px;
+    flex: 1 1 45%;
+    max-width: 350px;
 }
 
 .unlock-date {
@@ -41,15 +44,18 @@ header {
     border-radius: 5px;
     transition: background 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.celebration-btn:nth-child(1) { background-color: #ff6f61; }
-.celebration-btn:nth-child(2) { background-color: #ffcc00; }
-.celebration-btn:nth-child(3) { background-color: #66cc33; }
-.celebration-btn:nth-child(4) { background-color: #3399ff; }
-.celebration-btn:nth-child(5) { background-color: #9966ff; }
-.celebration-btn:nth-child(6) { background-color: #ff6699; }
-.celebration-btn:nth-child(7) { background-color: #ff9933; }
+/* ボタン色の設定 */
+.celebration-btn:nth-of-type(1) { background-color: #ff6f61; } /* 赤 */
+.celebration-btn:nth-of-type(2) { background-color: #ffcc00; } /* 黄 */
+.celebration-btn:nth-of-type(3) { background-color: #66cc33; } /* 緑 */
+.celebration-btn:nth-of-type(4) { background-color: #3399ff; } /* 青 */
+.celebration-btn:nth-of-type(5) { background-color: #9966ff; } /* 紫 */
+.celebration-btn:nth-of-type(6) { background-color: #ff6699; } /* ピンク */
+.celebration-btn:nth-of-type(7) { background-color: #ff9933; } /* オレンジ */
 
 /* ホバー時のアニメーション */
 .celebration-btn:hover {
@@ -60,7 +66,6 @@ header {
 
 /* ロックされたボタンのデザイン */
 .locked {
-    background-color: #444 !important;
     cursor: not-allowed;
     opacity: 0.5;
     position: relative;
@@ -78,4 +83,20 @@ header {
     background: url('chain.png') no-repeat center center;
     background-size: contain;
     transform: translate(-50%, -50%);
+}
+
+/* iPad Mini向けのレスポンシブデザイン */
+@media (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    .celebration-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 小さな画面で自動調整 */
+    }
+
+    .celebration-btn {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
 }

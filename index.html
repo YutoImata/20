@@ -9,19 +9,39 @@
 <body>
     <header>
         <h1>20歳のお祝い</h1>
-        <p>あなたの成人を祝して、7つのプレゼントをご用意しました！</p>
     </header>
-    <main>
-        <div class="celebration-container">
-            <button class="celebration-btn" onclick="goToPage('gift1.html')">プレゼント1</button>
-            <button class="celebration-btn" onclick="goToPage('gift2.html')">プレゼント2</button>
-            <button class="celebration-btn" onclick="goToPage('gift3.html')">プレゼント3</button>
-            <button class="celebration-btn" onclick="goToPage('gift4.html')">プレゼント4</button>
-            <button class="celebration-btn" onclick="goToPage('gift5.html')">プレゼント5</button>
-            <button class="celebration-btn" onclick="goToPage('gift6.html')">プレゼント6</button>
-            <button class="celebration-btn" onclick="goToPage('gift7.html')">プレゼント7</button>
+    <div class="celebration-container">
+        <div class="celebration-item">
+            <span class="unlock-date">4月1日解禁</span>
+            <button class="celebration-btn locked" data-url="gift1.html">プレゼント①</button>
         </div>
-    </main>
-    <script src="JS/index.js"></script>
+        <div class="celebration-item">
+            <span class="unlock-date">4月5日解禁</span>
+            <button class="celebration-btn" data-url="gift2.html">プレゼント②</button>
+        </div>
+        <div class="celebration-item">
+            <span class="unlock-date">4月10日解禁</span>
+            <button class="celebration-btn locked" data-url="gift3.html">プレゼント③</button>
+        </div>
+        <div class="celebration-item">
+            <span class="unlock-date">4月15日解禁</span>
+            <button class="celebration-btn" data-url="gift4.html">プレゼント④</button>
+        </div>
+        <div class="celebration-item">
+            <span class="unlock-date">4月20日解禁</span>
+            <button class="celebration-btn locked" data-url="gift5.html">プレゼント⑤</button>
+        </div>
+        <div class="celebration-item">
+            <span class="unlock-date">4月25日解禁</span>
+            <button class="celebration-btn" data-url="gift6.html">プレゼント⑥</button>
+        </div>
+        <div class="celebration-item">
+            <span class="unlock-date">4月30日解禁</span>
+            <button class="celebration-btn locked" data-url="gift7.html">プレゼント⑦</button>
+        </div>
+    </div>
+
+    <script defer src="JS/index.js"></script>
+
 </body>
 </html>

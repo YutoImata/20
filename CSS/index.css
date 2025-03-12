@@ -48,7 +48,6 @@ header {
     box-sizing: border-box;
 }
 
-/* ボタン色の設定 */
 .celebration-btn:nth-of-type(1) { background-color: #ff6f61; } /* 赤 */
 .celebration-btn:nth-of-type(2) { background-color: #ffcc00; } /* 黄 */
 .celebration-btn:nth-of-type(3) { background-color: #66cc33; } /* 緑 */
@@ -57,32 +56,31 @@ header {
 .celebration-btn:nth-of-type(6) { background-color: #ff6699; } /* ピンク */
 .celebration-btn:nth-of-type(7) { background-color: #ff9933; } /* オレンジ */
 
-/* ホバー時のアニメーション */
-.celebration-btn:hover {
-    transform: scale(1.1);
-    opacity: 0.9;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
 /* ロックされたボタンのデザイン */
-.locked {
+.celebration-btn.locked {
     cursor: not-allowed;
     opacity: 0.5;
-    position: relative;
     pointer-events: none;
+    position: relative;
 }
 
-/* 鎖の画像 */
-.locked::before {
+.celebration-btn.locked::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     width: 50px;
     height: 50px;
-    background: url('chain.png') no-repeat center center;
+    background: url('Pictures/lock.png') no-repeat center center;
     background-size: contain;
     transform: translate(-50%, -50%);
+}
+
+/* ホバー時のアニメーション */
+.celebration-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* iPad Mini向けのレスポンシブデザイン */
@@ -100,3 +98,14 @@ header {
         padding: 12px 24px;
     }
 }
+
+footer {
+    background-color: #ff6f61;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+

@@ -18,3 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+document.getElementById('start-button').addEventListener('click', function() {
+    // 非表示にする要素
+    document.getElementById('initial-screen').style.display = 'none';
+    
+    // コンテンツ表示
+    document.body.style.overflowY = 'auto';  // スクロール可能に戻す
+});

@@ -17,12 +17,12 @@ function generateShapes() {
         /* ランダムな位置 & サイズ設定 */
         const size = Math.random() * 30 + 10; // 10px〜40px
         shape.style.fontSize = `${size}px`;
-        shape.style.position = "absolute";
+        shape.style.position = "fixed"; // fixedに変更してスクロールしても位置が固定されるように
         shape.style.left = `${Math.random() * width}px`;
         shape.style.top = `${Math.random() * height}px`;
 
         // ランダムな色を生成（RGBA形式）
-        const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.12)`; // 透明度を0.1に変更
+        const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.12)`; // 透明度を0.12に設定
         shape.style.color = randomColor; // ランダムな色を適用
 
         shape.style.userSelect = "none"; // 選択不可

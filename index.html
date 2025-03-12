@@ -4,46 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>20歳のお祝い</title>
-    <link rel="stylesheet" href="CSS/index.css">
+    <!-- Google Fonts から筆記体フォントをインポート -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- 外部CSSファイルをリンク -->
+    <link rel="stylesheet" href="CSS/index.css">
 </head>
 <body>
     <header>
         <h1 class="animated-title">Celebrating 20 Years</h1>
     </header>
-    <div class="celebration-container">
-        <div class="celebration-item">
-            <span class="unlock-date">4月1日解禁</span>
-            <button class="celebration-btn locked" data-url="gift1.html">プレゼント①</button>
+
+   <!-- お祝いメッセージセクション -->
+<section class="message">
+    <h2>お祝いメッセージ</h2>
+    <p>20歳おめでとう！これからの一年も素晴らしいものになりますように。大切な思い出を一緒に作りましょう！</p>
+</section>
+
+    
+
+    <!-- プレゼントセクション -->
+    <section class="gift-section">
+        <div class="celebration-container">
+            <div class="celebration-item">
+                <span class="unlock-date">4月1日解禁</span>
+                <button class="celebration-btn locked" data-url="gift1.html">プレゼント①</button>
+            </div>
+            <div class="celebration-item">
+                <span class="unlock-date">4月5日解禁</span>
+                <button class="celebration-btn" data-url="gift2.html">プレゼント②</button>
+            </div>
+            <div class="celebration-item">
+                <span class="unlock-date">4月10日解禁</span>
+                <button class="celebration-btn locked" data-url="gift3.html">プレゼント③</button>
+            </div>
+            <div class="celebration-item">
+                <span class="unlock-date">4月15日解禁</span>
+                <button class="celebration-btn" data-url="gift4.html">プレゼント④</button>
+            </div>
+            <div class="celebration-item">
+                <span class="unlock-date">4月20日解禁</span>
+                <button class="celebration-btn locked" data-url="gift5.html">プレゼント⑤</button>
+            </div>
+            <div class="celebration-item">
+                <span class="unlock-date">4月25日解禁</span>
+                <button class="celebration-btn" data-url="gift6.html">プレゼント⑥</button>
+            </div>
+            <div class="celebration-item">
+                <span class="unlock-date">4月30日解禁</span>
+                <button class="celebration-btn locked" data-url="gift7.html">プレゼント⑦</button>
+            </div>
         </div>
-        <div class="celebration-item">
-            <span class="unlock-date">4月5日解禁</span>
-            <button class="celebration-btn" data-url="gift2.html">プレゼント②</button>
+    </section>
+
+    <section class="news-section">
+        <div class="news-container">
+            <h2 class="news-title">お知らせ</h2>
+            <div class="news-item">
+                <h3 class="news-item-title">新しいサービス開始！</h3>
+                <p class="news-item-date">2025年3月13日</p>
+                <p class="news-item-description">新しいサービスを開始しました。ぜひご利用ください！</p>
+            </div>
+            <div class="news-item">
+                <h3 class="news-item-title">メンテナンスのお知らせ</h3>
+                <p class="news-item-date">2025年3月15日</p>
+                <p class="news-item-description">サイトメンテナンスが行われます。ご不便をおかけいたします。</p>
+            </div>
+            <div class="news-item">
+                <h3 class="news-item-title">キャンペーン開催中</h3>
+                <p class="news-item-date">2025年3月10日</p>
+                <p class="news-item-description">期間限定のキャンペーンを開催しています！お得な情報をチェックしてください。</p>
+            </div>
         </div>
-        <div class="celebration-item">
-            <span class="unlock-date">4月10日解禁</span>
-            <button class="celebration-btn locked" data-url="gift3.html">プレゼント③</button>
-        </div>
-        <div class="celebration-item">
-            <span class="unlock-date">4月15日解禁</span>
-            <button class="celebration-btn" data-url="gift4.html">プレゼント④</button>
-        </div>
-        <div class="celebration-item">
-            <span class="unlock-date">4月20日解禁</span>
-            <button class="celebration-btn locked" data-url="gift5.html">プレゼント⑤</button>
-        </div>
-        <div class="celebration-item">
-            <span class="unlock-date">4月25日解禁</span>
-            <button class="celebration-btn" data-url="gift6.html">プレゼント⑥</button>
-        </div>
-        <div class="celebration-item">
-            <span class="unlock-date">4月30日解禁</span>
-            <button class="celebration-btn locked" data-url="gift7.html">プレゼント⑦</button>
-        </div>
-    </div>
+    </section>
+    
 
     <footer>
-        <p>&copy; 2024 20歳のお祝い. All Rights Reserved.</p>
+        <p>&copy; 2024 Celebrating 20 Years. All Rights Reserved.</p>
     </footer>
     
     <script defer src="JS/index.js"></script>

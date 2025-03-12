@@ -22,7 +22,7 @@ function generateShapes() {
         shape.style.top = `${Math.random() * height}px`;
 
         // ランダムな色を生成（RGBA形式）
-        const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.3)`;
+        const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.12)`; // 透明度を0.1に変更
         shape.style.color = randomColor; // ランダムな色を適用
 
         shape.style.userSelect = "none"; // 選択不可

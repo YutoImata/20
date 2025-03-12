@@ -1,6 +1,3 @@
-/* Google Fonts から筆記体フォントをインポート */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-
 /* 全体のレイアウト */
 body {
     font-family: 'Poppins', sans-serif;
@@ -8,8 +5,8 @@ body {
     background-color: #f8f9fa;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    position: fixed;
+    overflow-y: auto; /* 縦スクロールを有効にする */
+    position: relative; /* fixedからrelativeに変更 */
     width: 100%;
     height: 100%;
 }
@@ -28,7 +25,7 @@ header {
     font-weight: 700;
     letter-spacing: 2px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-    animation: animateTitle 6s ease-in-out infinite;  /* アニメーション時間を6秒に変更 */
+    animation: animateTitle 6s ease-in-out infinite;
     display: inline-block;
 }
 
@@ -55,7 +52,98 @@ header {
     }
 }
 
-/* グリッドでボタンを並べる */
+/* お祝いメッセージセクション */
+.message {
+    background-color: #ffeb3b; /* 明るい黄色 */
+    border-radius: 10px;
+    padding: 30px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 1000px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* メッセージタイトル */
+.message h2 {
+    font-size: 2.5rem;
+    font-family: 'Dancing Script', cursive;
+    color: #d23f31; /* 深いオレンジ色 */
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 2s ease-out forwards;
+}
+
+/* メッセージ本文 */
+.message p {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+    animation: fadeIn 3s ease-out forwards;
+    opacity: 0;
+}
+
+/* アニメーション: フェードイン */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* メッセージセクションに動きや装飾を追加 */
+.message::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: pulse 4s ease-out infinite;
+    transform: translate(-50%, -50%);
+}
+
+/* パルスアニメーション */
+@keyframes pulse {
+    0% {
+        transform: scale(1) translate(-50%, -50%);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2) translate(-50%, -50%);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1) translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+
+
+/* プレゼントセクション */
+.gift-section {
+    background-color: #e0f7fa; /* 薄い青色 */
+    padding: 40px 20px;
+    border-radius: 8px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* グリッドレイアウト */
 .celebration-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -79,14 +167,14 @@ header {
     box-sizing: border-box;
 }
 
-/* ボタンのカラー */
-.celebration-container .celebration-item:nth-child(1) .celebration-btn { background-color: #ff6f61; } /* 赤 */
-.celebration-container .celebration-item:nth-child(2) .celebration-btn { background-color: #ffcc00; } /* 黄 */
-.celebration-container .celebration-item:nth-child(3) .celebration-btn { background-color: #66cc33; } /* 緑 */
-.celebration-container .celebration-item:nth-child(4) .celebration-btn { background-color: #3399ff; } /* 青 */
-.celebration-container .celebration-item:nth-child(5) .celebration-btn { background-color: #9966ff; } /* 紫 */
-.celebration-container .celebration-item:nth-child(6) .celebration-btn { background-color: #ff6699; } /* ピンク */
-.celebration-container .celebration-item:nth-child(7) .celebration-btn { background-color: #ff9933; } /* オレンジ */
+/* プレゼントボタンのカラー */
+.celebration-container .celebration-item:nth-child(1) .celebration-btn { background-color: #ff6f61; } 
+.celebration-container .celebration-item:nth-child(2) .celebration-btn { background-color: #ffcc00; } 
+.celebration-container .celebration-item:nth-child(3) .celebration-btn { background-color: #66cc33; } 
+.celebration-container .celebration-item:nth-child(4) .celebration-btn { background-color: #3399ff; } 
+.celebration-container .celebration-item:nth-child(5) .celebration-btn { background-color: #9966ff; } 
+.celebration-container .celebration-item:nth-child(6) .celebration-btn { background-color: #ff6699; } 
+.celebration-container .celebration-item:nth-child(7) .celebration-btn { background-color: #ff9933; }
 
 /* ロックされたボタンのデザイン */
 .celebration-btn.locked {
@@ -112,22 +200,70 @@ header {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* iPad Mini向けのレスポンシブデザイン */
-@media (max-width: 768px) {
-    header {
-        padding: 20px;
-    }
-
-    .celebration-container {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-
-    .celebration-btn {
-        font-size: 16px;
-        padding: 12px 24px;
-    }
+/* お知らせセクション */
+.news-section {
+    background-color: #f1f1f1;
+    padding: 50px 20px;
 }
 
+/* お知らせコンテナ */
+.news-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* お知らせタイトル */
+.news-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* お知らせアイテム */
+.news-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+/* アイテムのタイトル */
+.news-item-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* アイテムの日付 */
+.news-item-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+/* アイテムの詳細説明 */
+.news-item-description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+
+
+/* フッター部分 */
 footer {
     background: linear-gradient(135deg, #ff6f61, #d23f31);
     color: white;

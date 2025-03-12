@@ -18,39 +18,6 @@ header {
     padding: 40px 20px;
 }
 
-/* 初期表示画面 */
-#initial-screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #ffeb3b; /* 明るい黄色 */
-    text-align: center;
-}
-
-.celebration-image {
-    width: 200px;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-#start-button {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    background-color: #ff6f61;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#start-button:hover {
-    background-color: #d23f31;
-}
-
-
 /* タイトルのアニメーションとスタイル */
 .animated-title {
     font-family: 'Dancing Script', cursive;

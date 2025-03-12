@@ -48,13 +48,14 @@ header {
     box-sizing: border-box;
 }
 
-.celebration-btn:nth-of-type(1) { background-color: #ff6f61; } /* 赤 */
-.celebration-btn:nth-of-type(2) { background-color: #ffcc00; } /* 黄 */
-.celebration-btn:nth-of-type(3) { background-color: #66cc33; } /* 緑 */
-.celebration-btn:nth-of-type(4) { background-color: #3399ff; } /* 青 */
-.celebration-btn:nth-of-type(5) { background-color: #9966ff; } /* 紫 */
-.celebration-btn:nth-of-type(6) { background-color: #ff6699; } /* ピンク */
-.celebration-btn:nth-of-type(7) { background-color: #ff9933; } /* オレンジ */
+/* 7色のボタン */
+.celebration-container .celebration-item:nth-child(1) .celebration-btn { background-color: #ff6f61; } /* 赤 */
+.celebration-container .celebration-item:nth-child(2) .celebration-btn { background-color: #ffcc00; } /* 黄 */
+.celebration-container .celebration-item:nth-child(3) .celebration-btn { background-color: #66cc33; } /* 緑 */
+.celebration-container .celebration-item:nth-child(4) .celebration-btn { background-color: #3399ff; } /* 青 */
+.celebration-container .celebration-item:nth-child(5) .celebration-btn { background-color: #9966ff; } /* 紫 */
+.celebration-container .celebration-item:nth-child(6) .celebration-btn { background-color: #ff6699; } /* ピンク */
+.celebration-container .celebration-item:nth-child(7) .celebration-btn { background-color: #ff9933; } /* オレンジ */
 
 /* ロックされたボタンのデザイン */
 .celebration-btn.locked {
@@ -71,7 +72,7 @@ header {
     left: 50%;
     width: 50px;
     height: 50px;
-    background: url('Pictures/lock.png') no-repeat center center;
+    background: url('Pictures\lock.png') no-repeat center center;
     background-size: contain;
     transform: translate(-50%, -50%);
 }

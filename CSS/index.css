@@ -1,3 +1,4 @@
+/* CSS/index.css */
 body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
@@ -24,6 +25,15 @@ body {
     margin-bottom: 20px;
 }
 
+input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 80%;
+}
+
 #go-to-page {
     background-color: #ff6f61;
     color: white;
@@ -37,4 +47,9 @@ body {
 
 #go-to-page:hover {
     background-color: #d23f31;
+}
+
+#error-message {
+    margin-top: 10px;
+    font-size: 14px;
 }

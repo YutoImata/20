@@ -20,19 +20,16 @@ function generateShapes() {
         shape.style.position = "absolute";
         shape.style.left = `${Math.random() * width}px`;
         shape.style.top = `${Math.random() * height}px`;
-        shape.style.color = "rgba(173, 216, 230, 0.3)"; // より薄い水色
+
+        // ランダムな色を生成（RGBA形式）
+        const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.3)`;
+        shape.style.color = randomColor; // ランダムな色を適用
+
         shape.style.userSelect = "none"; // 選択不可
-        shape.style.opacity = "1"; // 初期状態は透明ではない
-        shape.style.transition = "left 2s linear, top 2s linear, opacity 1s"; // スムーズな移動とフェード
+        shape.style.transition = "left 2s linear, top 2s linear"; // スムーズな移動
 
         body.appendChild(shape);
         moveShape(shape);
-        
-        /* 10秒後にフェードアウトしつつ削除 */
-        setTimeout(() => {
-            shape.style.opacity = "0"; // 透明にする
-            setTimeout(() => shape.remove(), 1000); // 透明化のアニメーション後に削除
-        }, 10000);
     }
 }
 
@@ -53,10 +50,8 @@ function moveShape(shape) {
         shape.style.left = `${newX}px`;
         shape.style.top = `${newY}px`;
 
-        /* 再度移動を設定 */
-        if (shape.style.opacity !== "0") {
-            setTimeout(updatePosition, 1000); // 2秒ごとにゆっくり動く
-        }
+        /* 継続的に移動 */
+        setTimeout(updatePosition, 2000); // 2秒ごとに移動
     }
 
     updatePosition(); // 初回実行

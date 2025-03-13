@@ -23,11 +23,33 @@ header {
     font-family: 'Dancing Script', cursive;
     font-size: 4rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 2px;    
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
     animation: animateTitle 6s ease-in-out infinite;
     display: inline-block;
 }
+
+/* カウントダウンセクション */
+#countdown-section {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    color: white;
+}
+
+#countdown-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+#countdown-timer {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
 
 @keyframes animateTitle {
     0% {
@@ -273,3 +295,19 @@ footer {
     font-size: 14px;
     font-weight: 600;
 }
+
+
+/* フェードインの初期状態 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* 表示されたときの状態 */
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+

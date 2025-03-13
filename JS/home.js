@@ -1,29 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const today = new Date();
-    const buttons = document.querySelectorAll(".celebration-btn");
+    const sections = document.querySelectorAll("section"); // すべてのセクションを取得
 
-    buttons.forEach(button => {
-        const unlockDate = new Date(button.getAttribute("data-unlock"));
+    function fadeInSections() {
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
 
-        /* 現在の日付が解禁日を過ぎていたらロック解除 */
-        if (today >= unlockDate) {
-            button.classList.remove("locked");
-        }
-
-        /* ボタンをクリック時にページ遷移 */
-        button.addEventListener("click", function () {
-            if (!button.classList.contains("locked")) {
-                window.location.href = button.getAttribute("data-url");
+            if (rect.top < windowHeight * 0.8) { // 80% の位置に来たら表示
+                section.classList.add("active");
             }
         });
-    });
-});
+    }
 
+    // 初回チェック
+    fadeInSections();
 
-document.getElementById('start-button').addEventListener('click', function() {
-    // 非表示にする要素
-    document.getElementById('initial-screen').style.display = 'none';
-    
-    // コンテンツ表示
-    document.body.style.overflowY = 'auto';  // スクロール可能に戻す
+    // スクロールイベントでチェック
+    window.addEventListener("scroll", fadeInSections);
+
+    // 初期状態でクラスを適用
+    sections.forEach(section => section.classList.add("fade-in"));
 });

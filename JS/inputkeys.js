@@ -14,28 +14,29 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-/* 開発者ツールの検出 */
+/* 開発者ツールの影響を無効化 */
 (function() {
     let threshold = 160; // 開発者ツールのウィンドウサイズ閾値
-    function detectDevTools() {
+    function neutralizeDevTools() {
         if (window.outerWidth - window.innerWidth > threshold || 
             window.outerHeight - window.innerHeight > threshold) {
-            alert("開発者ツールが検出されました。ページをリロードします。");
-            window.location.reload();
+            // 何もしないが、開発者ツールの影響を防ぐ
+            console.clear(); // コンソールをクリア
         }
     }
-    setInterval(detectDevTools, 1000);
+    setInterval(neutralizeDevTools, 1000);
 })();
 
-/* コンソールの妨害 */
+/* コンソールの無力化 */
 setInterval(() => {
-    console.log("%c 開発者ツールを使用しないでください！", "color: red; font-size: 20px;");
-}, 2000);
+    console.log = function() {}; // console.logを無効化
+    console.warn = function() {}; // console.warnを無効化
+    console.error = function() {}; // console.errorを無効化
+}, 1000);
 
 Object.defineProperty(window, "console", {
     get: function() {
-        alert("開発者ツールの使用は禁止されています！");
-        window.location.href = "about:blank";
+        return {}; // コンソールを空のオブジェクトにする
     },
     configurable: false
 });

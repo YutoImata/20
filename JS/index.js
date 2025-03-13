@@ -1,7 +1,7 @@
 // JS/welcome.js
 function checkPassword() {
     const password = document.getElementById('password').value;
-    const correctPassword = '9118'; // ここに正しいパスワードを設定
+    const correctPassword = '0901'; // ここに正しいパスワードを設定
 
     // パスワードが正しいか確認
     if (password === correctPassword) {

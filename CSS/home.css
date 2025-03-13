@@ -193,10 +193,10 @@ header {
 .celebration-container .celebration-item:nth-child(1) .celebration-btn { background-color: #ff6f61; } 
 .celebration-container .celebration-item:nth-child(2) .celebration-btn { background-color: #ffcc00; } 
 .celebration-container .celebration-item:nth-child(3) .celebration-btn { background-color: #66cc33; } 
-.celebration-container .celebration-item:nth-child(4) .celebration-btn { background-color: #3399ff; } 
+.celebration-container .celebration-item:nth-child(4) .celebration-btn { background-color: #ffa033; } 
 .celebration-container .celebration-item:nth-child(5) .celebration-btn { background-color: #9966ff; } 
 .celebration-container .celebration-item:nth-child(6) .celebration-btn { background-color: #ff6699; } 
-.celebration-container .celebration-item:nth-child(7) .celebration-btn { background-color: #ff9933; }
+.celebration-container .celebration-item:nth-child(7) .celebration-btn { background-color: #3399ff; }
 
 /* ロックされたボタンのデザイン */
 .celebration-btn.locked {

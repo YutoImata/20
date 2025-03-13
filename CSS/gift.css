@@ -1,0 +1,162 @@
+/* 全体のレイアウト */
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto; /* 縦スクロールを有効にする */
+    position: relative; /* fixedからrelativeに変更 */
+    width: 100%;
+    height: 100%;
+}
+
+/* header部分 */
+header {
+    background: linear-gradient(135deg, #ff6f61, #d23f31);
+    color: white;
+    padding: 40px 20px;
+}
+
+/* タイトルのアニメーションとスタイル */
+.animated-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 2px;    
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    animation: animateTitle 6s ease-in-out infinite;
+    display: inline-block;
+}
+
+
+
+
+@keyframes animateTitle {
+    0% {
+        transform: scale(1) rotate(0deg);
+        color: #ff6f61;
+    }
+    25% {
+        transform: scale(1.2) rotate(10deg);
+        color: #ffcc00;
+    }
+    50% {
+        transform: scale(1) rotate(-10deg);
+        color: #66cc33;
+    }
+    75% {
+        transform: scale(1.2) rotate(10deg);
+        color: #3399ff;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        color: #9966ff;
+    }
+}
+
+/* プレゼントセクション */
+.gift-content {
+    background-color: #e0f7fa; /* 薄い青色 */
+    padding: 40px 20px;
+    border-radius: 8px;
+    margin: 40px auto;
+    width: 80%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+/* 内容ボックスのスタイル */
+.content-box {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+/* 内容非表示状態 */
+.hidden-content {
+    visibility: hidden;
+}
+
+/* ヒントの表示 */
+.hints {
+    display: none;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hint {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* ヒント表示ボタン */
+.hint-btn, .more-hints {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+.hint-btn:hover, .more-hints:hover {
+    background-color: #d23f31;
+}
+
+.more-hints {
+    margin-top: 10px;
+}
+
+/* プレゼントのボタンのデザイン */
+.celebration-btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.3s;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* フッター部分 */
+footer {
+    background: linear-gradient(135deg, #ff6f61, #d23f31);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* フェードインの初期状態 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* 表示されたときの状態 */
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}

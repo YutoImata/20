@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ヒントリスト */
     const hintTexts = [
-        "最近は買ってないかな？", 
-        "毎日身につけるもの", 
-        "季節によって変えたくなるもの"
+        "結構使っていると思う", 
+        "女性は必須かな？", 
+        "俺もよく使う"
     ];
 
     /* ヒントボタンのクリックイベント */
@@ -35,12 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const detailsSection = document.querySelector(".details-section");
     const openGiftBtnSection = document.querySelector(".open-gift-section");
 
-    /* 正解リスト（衣類系ワード） */
+    /* 正解リスト（鏡やミラー関連のワード） */
     const correctAnswers = [
-        "服", "洋服", "シャツ", "Tシャツ", "ズボン", "パンツ", "ジーンズ",
-        "スカート", "ワンピース", "ジャケット", "コート", "パーカー",
-        "靴下", "ソックス", "セーター", "トレーナー", "ポロシャツ",
-        "スーツ", "ブレザー", "ベスト", "タイツ", "レギンス"
+        "鏡", "ミラー","化粧鏡"
     ];
 
     /* 回答のチェック */

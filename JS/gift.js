@@ -28,46 +28,35 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // ★★ 追加機能：回答チェック ★★
-    const answerInput = document.getElementById("answer-input");
-    const answerSubmit = document.getElementById("answer-submit");
-    const answerResult = document.getElementById("answer-result");
-
-    // 正解リスト（服を表す単語）
-    const correctAnswers = ["服", "洋服", "シャツ", "コート", "ジャケット", "ワンピース"];
-
-    answerSubmit.addEventListener("click", function () {
-        const userAnswer = answerInput.value.trim(); // 入力値を取得＆前後の空白を削除
-        if (correctAnswers.includes(userAnswer)) {
-            answerResult.innerText = "正解ぬ！🎉　さすがですわ";
-            answerResult.style.color = "green";
-        } else {
-            answerResult.innerText = "違いますぬぬ！";
-            answerResult.style.color = "red";
-        }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const correctAnswer = "服"; // 正解の答え
+    // ★★ 回答チェック機能 ★★
     const answerInput = document.getElementById("answer-input");
     const answerSubmit = document.getElementById("answer-submit");
     const answerResult = document.getElementById("answer-result");
     const detailsSection = document.querySelector(".details-section");
 
+    // 正解リスト（衣類系ワード）
+    const correctAnswers = [
+        "服", "洋服", "シャツ", "Tシャツ", "ズボン", "パンツ", "ジーンズ",
+        "スカート", "ワンピース", "ジャケット", "コート", "パーカー",
+        "靴下", "ソックス", "セーター", "トレーナー", "ポロシャツ",
+        "スーツ", "ブレザー", "ベスト", "タイツ", "レギンス"
+    ];
+
+    // 回答のチェック
     answerSubmit.addEventListener("click", function () {
         const userAnswer = answerInput.value.trim();
-        if (userAnswer === correctAnswer) {
-            answerResult.textContent = "正解！🎉";
-            answerResult.className = "correct-answer";
-            detailsSection.classList.remove("hidden"); // 詳細ページを表示
-            detailsSection.style.opacity = "1"; // フェードイン
+
+        if (correctAnswers.includes(userAnswer)) {
+            answerResult.innerText = "正解ぬ！🎉　さすがですわ";
+            answerResult.style.color = "green";
+
+            // 詳細ページを表示（フェードイン効果）
+            detailsSection.classList.remove("hidden");
+            detailsSection.style.opacity = "1";
             detailsSection.style.transform = "translateY(0)";
         } else {
-            answerResult.textContent = "違うみたい…💦";
-            answerResult.className = "wrong-answer";
+            answerResult.innerText = "違いますぬ";
+            answerResult.style.color = "red";
         }
     });
 });
-
-

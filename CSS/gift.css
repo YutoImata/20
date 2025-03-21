@@ -163,6 +163,7 @@ header {
     border-color: #d23f31;
 }
 
+
 /* 送信ボタン */
 #answer-submit {
     font-size: 1.1rem;
@@ -197,6 +198,41 @@ header {
 .wrong-answer {
     color: red;
 }
+
+
+/* プレゼントセクションの初期状態（隠す） */
+.open-gift-section.hidden {
+    display: none;
+}
+
+/* プレゼントボタン */
+#open-gift-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+    background-size: 400% 400%; /* グラデーションの幅を広げてアニメーションさせる */
+    transition: background-position 0.5s ease, transform 0.3s ease; /* 背景の動きとスケールを追加 */
+    cursor: pointer;
+}
+
+/* ボタンにホバーしたとき */
+#open-gift-btn:hover {
+    background-position: 100% 100%; /* グラデーションの動きを加速 */
+    transform: scale(1.1); /* ボタンを少し大きくスケール */
+}
+
+/* ボタンがフォーカスされたとき */
+#open-gift-btn:focus {
+    outline: none; /* デフォルトのアウトラインを消す */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* フォーカス時にボタンに影をつける */
+}
+
+
+
 
 /* 詳細ページセクション */
 .details-section {

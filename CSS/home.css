@@ -54,25 +54,26 @@ header {
 @keyframes animateTitle {
     0% {
         transform: scale(1) rotate(0deg);
-        color: #ff6f61;
+        color: #ffcc00;
     }
     25% {
         transform: scale(1.2) rotate(10deg);
-        color: #ffcc00;
+        color: #9966ff;
     }
     50% {
         transform: scale(1) rotate(-10deg);
-        color: #66cc33;
+        color: #3399ff;
     }
     75% {
         transform: scale(1.2) rotate(10deg);
-        color: #3399ff;
+        color: #66cc33;
     }
     100% {
         transform: scale(1) rotate(0deg);
-        color: #9966ff;
+        color: #ff6f61;
     }
 }
+
 
 /* お祝いメッセージセクション */
 .message {

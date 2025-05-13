@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ヒントリスト */
     const hintTexts = [
-        "結構使っていると思う", 
-        "女性は必須かな？", 
-        "俺もよく使う"
+        "最近使ってるブランドある？",
+        "お出かけ前に欠かせない",
+        "スキンケアやメイクで使うもの"
     ];
 
     /* ヒントボタンのクリックイベント */
@@ -35,10 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const detailsSection = document.querySelector(".details-section");
     const openGiftBtnSection = document.querySelector(".open-gift-section");
 
-    /* 正解リスト（鏡やミラー関連のワード） */
+    /* 正解リスト（衣類系ワード） */
     const correctAnswers = [
-        "鏡", "ミラー","化粧鏡"
+        "化粧品", "コスメ", "メイク道具", "メイク用品", "アイシャドウ", "口紅",
+        "リップ", "ファンデーション", "チーク", "マスカラ", "アイライナー", "化粧水",
+        "乳液", "美容液", "スキンケア", "パウダー", "メイクセット", "ネイル", "香水"
     ];
+
 
     /* 回答のチェック */
     answerSubmit.addEventListener("click", function () {

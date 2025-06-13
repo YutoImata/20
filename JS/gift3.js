@@ -83,8 +83,19 @@ stopBtn.addEventListener("click", () => {
     timerEl.style.transition = "none";
     timerEl.style.display = "block";
 
-    // プレゼント開封ボタンの表示制御（1秒以上5秒以下の場合のみ表示）
-    if (elapsed >= 1 && elapsed <= 5) {
+    // プレゼント開封ボタンの表示制御
+
+    // 【テスト用：1秒以上5秒以下で表示】
+    // if (elapsed >= 1 && elapsed <= 5) {
+    //     openGiftSection.classList.remove("hidden");  // 追加：親セクションを表示
+    //     openGiftBtn.style.display = "inline-block"; // ボタンを表示
+    // } else {
+    //     openGiftSection.classList.add("hidden");  // 親セクション非表示
+    //     openGiftBtn.style.display = "none";       // ボタン非表示
+    // }
+
+    // 【通常用：10秒ぴったりの時に表示（±0.1秒の範囲内で許容）】
+    if (Math.abs(elapsed - 10) < 0.1) {
         openGiftSection.classList.remove("hidden");  // 追加：親セクションを表示
         openGiftBtn.style.display = "inline-block"; // ボタンを表示
     } else {

@@ -1,71 +1,95 @@
-document.addEventListener("DOMContentLoaded", function () {
-    /* ヒントボタンとヒント表示エリア */
-    const hintBtn = document.querySelector(".hint-btn");
-    const hintsSection = document.querySelector(".hints");
-    const hiddenContent = document.querySelector(".hidden-content");
+const startBtn = document.getElementById("start-btn");
+const stopBtn = document.getElementById("stop-btn");
+const resetBtn = document.getElementById("reset-btn");
+const timerEl = document.getElementById("timer");
+const resultMessage = document.getElementById("result-message");
+const detailsSection = document.querySelector(".details-section");
+const openGiftSection = document.querySelector(".open-gift-section");
+const openGiftBtn = document.getElementById("open-gift-btn");
 
-    /* ヒントリスト */
-    const hintTexts = [
-        "ふわふわしてて気持ちいい",
-        "お風呂の後に使う",
-        "身体をしっかり包めるサイズ"
-    ];
+let startTime = null;
+let timerId = null;
+let fadeTimeout = null;
 
-    /* ヒントボタンのクリックイベント */
-    hintBtn.addEventListener("click", function () {
-        hiddenContent.style.visibility = "visible"; // プレゼント内容を表示
-        hintsSection.style.display = "block"; // ヒントセクションを開く
-    });
+function updateTimer() {
+    const now = performance.now();
+    const elapsed = (now - startTime) / 1000;
+    timerEl.textContent = elapsed.toFixed(2) + "秒";
+}
 
-    /* さらにヒントを見るボタンのクリックイベント */
-    const moreHintsBtns = document.querySelectorAll(".more-hints");
-    moreHintsBtns.forEach((btn, index) => {
-        btn.addEventListener("click", function () {
-            const hintParagraph = document.createElement("p"); // ヒント用のp要素を作成
-            hintParagraph.innerText = hintTexts[index]; // ヒントの内容を設定
-            btn.parentNode.insertBefore(hintParagraph, btn.nextSibling); // ボタンの下に挿入
-            btn.style.display = "none"; // ボタンを非表示にする
-        });
-    });
+startBtn.addEventListener("click", () => {
+    startTime = performance.now();
+    timerEl.textContent = "0.00秒";
+    resultMessage.textContent = "";
+    resultMessage.style.opacity = "1";
+    resultMessage.style.transition = "none";
+    resultMessage.style.display = "block";
 
-    /* ★★ 回答チェック機能 ★★ */
-    const answerInput = document.getElementById("answer-input");
-    const answerSubmit = document.getElementById("answer-submit");
-    const answerResult = document.getElementById("answer-result");
-    const detailsSection = document.querySelector(".details-section");
-    const openGiftBtnSection = document.querySelector(".open-gift-section");
+    detailsSection.classList.add("hidden");
+    openGiftSection.classList.add("hidden");
 
-    /* 正解リスト（鏡やミラー関連のワード） */
-    const correctAnswers = [
-        "バスタオル", "タオル", "ふわふわタオル", "大判タオル", "お風呂タオル", "バス用タオル"
-    ];
+    if (timerId) clearInterval(timerId);
+    timerId = setInterval(updateTimer, 10);
 
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    resetBtn.disabled = true;
 
-    /* 回答のチェック */
-    answerSubmit.addEventListener("click", function () {
-        const userAnswer = answerInput.value.trim();
+    if (fadeTimeout) clearTimeout(fadeTimeout);
+    setTimeout(() => {
+        resultMessage.style.transition = "opacity 1s ease";
+        resultMessage.style.opacity = "0";
+    }, 3000);
+    fadeTimeout = setTimeout(() => {
+        resultMessage.style.display = "none";
+    }, 4000);
+});
 
-        if (correctAnswers.includes(userAnswer)) {
-            answerResult.innerText = "正解ぬ！🎉　さすがですわ";
-            answerResult.style.color = "green";
+stopBtn.addEventListener("click", () => {
+    if (!startTime || !timerId) return;
 
-            /* プレゼント開封ボタンを表示 */
-            openGiftBtnSection.classList.remove("hidden");
-        } else {
-            answerResult.innerText = "違いますぬ";
-            answerResult.style.color = "red";
-        }
-    });
+    clearInterval(timerId);
+    timerId = null;
 
-    /* プレゼント開封ボタンのクリックイベント */
-    const openGiftBtn = document.getElementById("open-gift-btn");
-    openGiftBtn.addEventListener("click", function () {
-        /* プレゼント詳細を表示（フェードイン効果） */
-        detailsSection.classList.remove("hidden");
-        detailsSection.style.opacity = "1";
-        detailsSection.style.transform = "translateY(0)";
+    const now = performance.now();
+    const elapsed = (now - startTime) / 1000;
+    timerEl.textContent = elapsed.toFixed(2) + "秒";
 
-        /* ボタンを非表示にする */
-        openGiftBtn.style.display = "none"; // クリック後にボタンを非表示
-    });
+    resultMessage.style.display = "block";
+    resultMessage.style.opacity = "1";
+    resultMessage.style.transition = "opacity 0.3s";
+
+    if (elapsed >= 1 && elapsed <= 5) {
+        resultMessage.textContent = "テスト成功！プレゼントを開封できます。";
+        openGiftSection.classList.remove("hidden");
+        detailsSection.classList.add("hidden"); // 詳細はまだ表示しない
+    } else {
+        resultMessage.textContent = "残念！プレゼントはありません。";
+        openGiftSection.classList.add("hidden");
+        detailsSection.classList.add("hidden");
+    }
+
+    stopBtn.disabled = true;
+    resetBtn.disabled = false;
+});
+
+resetBtn.addEventListener("click", () => {
+    timerEl.textContent = "0.00秒";
+    resultMessage.textContent = "";
+    resultMessage.style.opacity = "1";
+    resultMessage.style.display = "block";
+    detailsSection.classList.add("hidden");
+    openGiftSection.classList.add("hidden");
+    startTime = null;
+    clearInterval(timerId);
+    timerId = null;
+
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    resetBtn.disabled = true;
+});
+
+// プレゼント開封ボタンの処理
+openGiftBtn.addEventListener("click", () => {
+    detailsSection.classList.remove("hidden");
 });

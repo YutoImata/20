@@ -27,6 +27,8 @@ startBtn.addEventListener("click", () => {
 
     detailsSection.classList.add("hidden");
     openGiftSection.classList.add("hidden");
+    detailsSection.style.opacity = "0";
+    detailsSection.style.transform = "translateY(20px)";
 
     if (timerId) clearInterval(timerId);
     timerId = setInterval(updateTimer, 10);
@@ -62,7 +64,7 @@ stopBtn.addEventListener("click", () => {
     if (elapsed >= 1 && elapsed <= 5) {
         resultMessage.textContent = "テスト成功！プレゼントを開封できます。";
         openGiftSection.classList.remove("hidden");
-        detailsSection.classList.add("hidden"); // 詳細はまだ表示しない
+        detailsSection.classList.add("hidden");
     } else {
         resultMessage.textContent = "残念！プレゼントはありません。";
         openGiftSection.classList.add("hidden");
@@ -80,6 +82,8 @@ resetBtn.addEventListener("click", () => {
     resultMessage.style.display = "block";
     detailsSection.classList.add("hidden");
     openGiftSection.classList.add("hidden");
+    detailsSection.style.opacity = "0";
+    detailsSection.style.transform = "translateY(20px)";
     startTime = null;
     clearInterval(timerId);
     timerId = null;
@@ -89,7 +93,8 @@ resetBtn.addEventListener("click", () => {
     resetBtn.disabled = true;
 });
 
-// プレゼント開封ボタンの処理
 openGiftBtn.addEventListener("click", () => {
     detailsSection.classList.remove("hidden");
+    detailsSection.style.opacity = "1";
+    detailsSection.style.transform = "translateY(0)";
 });

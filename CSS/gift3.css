@@ -248,7 +248,8 @@ header {
     /* 優しいグリーン */
     padding: 30px 20px;
     border-radius: 8px;
-    margin: 40px auto;
+    margin: 40px auto 120px auto;
+    /* ← 下に120pxの余白を追加 */
     width: 80%;
     max-width: 600px;
     text-align: center;

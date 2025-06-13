@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ヒントリスト */
     const hintTexts = [
-        "結構使っていると思う", 
-        "女性は必須かな？", 
-        "俺もよく使う"
+        "ふわふわしてて気持ちいい",
+        "お風呂の後に使う",
+        "身体をしっかり包めるサイズ"
     ];
 
     /* ヒントボタンのクリックイベント */
@@ -37,8 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* 正解リスト（鏡やミラー関連のワード） */
     const correctAnswers = [
-        "鏡", "ミラー","化粧鏡"
+        "バスタオル", "タオル", "ふわふわタオル", "大判タオル", "お風呂タオル", "バス用タオル"
     ];
+
 
     /* 回答のチェック */
     answerSubmit.addEventListener("click", function () {

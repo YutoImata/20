@@ -321,3 +321,78 @@ button {
     background-color: #cfd8dc;
     cursor: not-allowed;
 }
+
+/* スマートフォン対応（画面幅768px以下） */
+@media (max-width: 768px) {
+    /* タイトルのフォントサイズを小さく */
+    .animated-title {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+
+    /* headerのパディング調整 */
+    header {
+        padding: 30px 10px;
+    }
+
+    /* プレゼントセクション幅をほぼ画面いっぱいに */
+    .gift-content {
+        width: 95%;
+        padding: 30px 15px;
+        margin: 30px auto;
+    }
+
+    /* 内容ボックスの幅調整 */
+    .content-box {
+        width: 95%;
+        padding: 15px;
+        margin: 15px auto;
+        font-size: 0.9rem;
+    }
+
+    /* ボタンの幅を100%に */
+    .hint-btn,
+    .more-hints,
+    .celebration-btn,
+    #answer-submit,
+    #open-gift-btn,
+    #start-btn,
+    #stop-btn,
+    #reset-btn {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 1rem;
+        padding: 12px 0;
+        margin: 8px 0;
+    }
+
+    /* 回答セクションの幅調整 */
+    .answer-section {
+        width: 95%;
+        padding: 20px 15px;
+        margin: 30px auto;
+        font-size: 1rem;
+    }
+
+    /* 入力フォームの幅を広げる */
+    #answer-input {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+
+    /* 詳細ページセクションの幅と余白調整 */
+    .details-section {
+        width: 95%;
+        margin: 30px auto 80px auto;
+        padding: 20px 15px;
+        font-size: 1rem;
+    }
+
+    /* フッターの固定位置を解除し、スクリーン幅に合わせる */
+    footer {
+        position: relative;
+        padding: 15px 10px;
+        font-size: 0.9rem;
+    }
+}

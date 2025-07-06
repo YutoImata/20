@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5等分の花嫁 イベント旅行プランナー</title>
+    <link rel="stylesheet" href="quintuplets.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <button class="home-btn" onclick="location.href='../HTML/home.html'">🏠 ホームに戻る</button>
+        <h1>🌸 5等分の花嫁 イベント旅行プランナー 🌸</h1>
+        <p>2026年5月2日 トヨタアリーナ</p>
+    </header>
+
+    <main>
+        <section class="plan-selector">
+            <h2>宿泊プランを選択</h2>
+            <div class="plan-buttons">
+                <button class="plan-btn" data-nights="1">1泊2日</button>
+                <button class="plan-btn" data-nights="2">2泊3日</button>
+                <button class="plan-btn" data-nights="3">3泊4日</button>
+            </div>
+        </section>
+
+        <section class="calculation-section">
+            <div class="input-section">
+                <h3>料金設定</h3>
+                <div class="input-group">
+                    <label for="flight-price">往復航空券 (円):</label>
+                    <input type="number" id="flight-price" value="65000" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="hotel-price">ホテル1泊 (円):</label>
+                    <input type="number" id="hotel-price" value="15000" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="dinner-price">夕食1回 (円):</label>
+                    <input type="number" id="dinner-price" value="5000" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="meal-price">朝昼食1日 (円):</label>
+                    <input type="number" id="meal-price" value="2500" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="transport-price">現地交通費1日 (円):</label>
+                    <input type="number" id="transport-price" value="1500" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="event-price">イベントチケット (円):</label>
+                    <input type="number" id="event-price" value="12000" min="0" step="100">
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h3>旅行プラン詳細</h3>
+                <div id="plan-details" class="plan-details">
+                    <p>プランを選択してください</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="schedule-section">
+            <h3>スケジュール例</h3>
+            <div id="schedule-details" class="schedule-details">
+                <p>プランを選択するとスケジュールが表示されます</p>
+            </div>
+        </section>
+
+        <section class="notes-section">
+            <h3>📝 旅行の注意事項・チェックリスト</h3>
+            <div class="notes-content">
+                <div class="checklist">
+                    <h4>持ち物チェックリスト</h4>
+                    <ul>
+                        <li>✈️ 航空券・身分証明書</li>
+                        <li>🏨 ホテル予約確認書</li>
+                        <li>🎫 イベントチケット</li>
+                        <li>💰 現金・クレジットカード</li>
+                        <li>📱 スマホ充電器</li>
+                        <li>🧳 着替え（宿泊数+1日分）</li>
+                        <li>🪥 洗面用具</li>
+                        <li>💊 常備薬</li>
+                    </ul>
+                </div>
+                <div class="tips">
+                    <h4>💡 お得情報・Tips</h4>
+                    <ul>
+                        <li>早期予約で航空券が安くなる場合があります</li>
+                        <li>ホテルはトイレ・風呂別の条件で検索</li>
+                        <li>コンビニ食材を活用して食費を抑制</li>
+                        <li>ICカードを用意して交通費を管理</li>
+                        <li>イベントグッズ購入予算も考慮しましょう</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 5等分の花嫁 旅行プランナー</p>
+    </footer>
+
+    <script src="quintuplets.js"></script>
+</body>
+</html>

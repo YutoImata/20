@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const planButtons = document.querySelectorAll('.plan-btn');
+    const eventButtons = document.querySelectorAll('.event-btn');
     const planDetails = document.getElementById('plan-details');
     const scheduleDetails = document.getElementById('schedule-details');
     const inputs = document.querySelectorAll('input[type="number"]');
     
     let currentNights = 0;
+    let selectedEvents = new Set(); // 複数選択のためのSet
     
     // プランボタンのクリックイベント
     planButtons.forEach(button => {
@@ -16,6 +18,30 @@ document.addEventListener('DOMContentLoaded', function() {
             currentNights = parseInt(this.dataset.nights);
             updatePlanDetails();
             updateSchedule();
+        });
+    });
+
+    // イベントボタンのクリックイベント（複数選択対応）
+    eventButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const eventType = this.dataset.event;
+            const checkbox = this.querySelector('.checkbox');
+            
+            if (selectedEvents.has(eventType)) {
+                // 既に選択されている場合は解除
+                selectedEvents.delete(eventType);
+                this.classList.remove('selected');
+                checkbox.textContent = '☐';
+            } else {
+                // 選択されていない場合は追加
+                selectedEvents.add(eventType);
+                this.classList.add('selected');
+                checkbox.textContent = '☑';
+            }
+            
+            if (currentNights > 0) {
+                updatePlanDetails();
+            }
         });
     });
     
@@ -35,20 +61,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const mealPrice = parseInt(document.getElementById('meal-price').value) || 0;
         const transportPrice = parseInt(document.getElementById('transport-price').value) || 0;
         const eventPrice = parseInt(document.getElementById('event-price').value) || 0;
+        const potterPrice = parseInt(document.getElementById('potter-price').value) || 0;
+        const noodlesPrice = parseInt(document.getElementById('noodles-price').value) || 0;
+        const mongolPrice = parseInt(document.getElementById('mongol-price').value) || 0;
+        const souvenirPrice = parseInt(document.getElementById('souvenir-price').value) || 0;
         
         const days = currentNights + 1;
         
-        // 費用計算
+        // 基本費用計算
         const totalHotelCost = hotelPrice * currentNights;
         const totalDinnerCost = dinnerPrice * currentNights;
         const totalMealCost = mealPrice * days;
         const totalTransportCost = transportPrice * days;
         
+        // 選択されたイベント費用計算
+        let additionalEventCost = 0;
+        let eventDescriptions = [];
+        
+        if (selectedEvents.has('potter')) {
+            additionalEventCost += potterPrice;
+            eventDescriptions.push('ハリーポッターミュージアム');
+        }
+        if (selectedEvents.has('noodles')) {
+            additionalEventCost += noodlesPrice;
+            eventDescriptions.push('カップヌードルミュージアム');
+        }
+        if (selectedEvents.has('mongol')) {
+            additionalEventCost += mongolPrice;
+            eventDescriptions.push('蒙古タンメン中本');
+        }
+        
+        const eventDescription = eventDescriptions.length > 0 
+            ? eventDescriptions.join(' + ') 
+            : '追加イベントなし';
+        
         const totalCost = flightPrice + totalHotelCost + totalDinnerCost + 
-                         totalMealCost + totalTransportCost + eventPrice;
+                         totalMealCost + totalTransportCost + eventPrice + 
+                         additionalEventCost + souvenirPrice;
         
         planDetails.innerHTML = `
-            <h4>${currentNights}泊${days}日プラン</h4>
+            <h4>${currentNights}泊${days}日プラン + ${eventDescription}</h4>
             <div class="cost-breakdown">
                 <div class="cost-item">
                     <span>✈️ 往復航空券</span>
@@ -73,6 +125,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="cost-item">
                     <span>🎫 イベントチケット</span>
                     <span>¥${eventPrice.toLocaleString()}</span>
+                </div>
+                ${additionalEventCost > 0 ? `
+                <div class="cost-item">
+                    <span>🎪 追加イベント</span>
+                    <span>¥${additionalEventCost.toLocaleString()}</span>
+                </div>` : ''}
+                <div class="cost-item">
+                    <span>🎁 お土産代</span>
+                    <span>¥${souvenirPrice.toLocaleString()}</span>
                 </div>
             </div>
             <div class="total-cost">

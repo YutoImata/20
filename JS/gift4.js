@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ヒントリスト */
     const hintTexts = [
-        "結構使っていると思う", 
-        "女性は必須かな？", 
-        "俺もよく使う"
+        "おいしいものを食べに行こう", 
+        "1回じゃ足りないから複数回", 
+        "場所はどこでもいいよん"
     ];
 
     /* ヒントボタンのクリックイベント */
@@ -35,9 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const detailsSection = document.querySelector(".details-section");
     const openGiftBtnSection = document.querySelector(".open-gift-section");
 
-    /* 正解リスト（鏡やミラー関連のワード） */
+    /* 正解リスト（外食関連のワード） */
     const correctAnswers = [
-        "鏡", "ミラー","化粧鏡"
+        "外食", "食事", "ディナー", "ランチ", "レストラン", "飲食", "グルメ", "お食事"
     ];
 
     /* 回答のチェック */

@@ -1,0 +1,330 @@
+/* 全体のテーマシステム用CSS */
+
+/* CSS変数でテーマを管理 */
+:root {
+    --theme-bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --theme-bg-secondary: rgba(255, 255, 255, 0.95);
+    --theme-text-primary: #333333;
+    --theme-text-secondary: #666666;
+    --theme-accent: #ff6b6b;
+    --theme-particle-color: #ff6b6b;
+    --theme-particle-char: '❤️';
+}
+
+/* 通常モード（デフォルト） */
+body.theme-normal {
+    --theme-bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --theme-bg-secondary: rgba(255, 255, 255, 0.95);
+    --theme-text-primary: #333333;
+    --theme-text-secondary: #666666;
+    --theme-accent: #ff6b6b;
+    --theme-particle-color: #ff6b6b;
+    --theme-particle-char: '❤️';
+}
+
+/* 宇宙モード */
+body.theme-space {
+    --theme-bg-primary: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    --theme-bg-secondary: rgba(30, 30, 60, 0.9);
+    --theme-text-primary: #ffffff;
+    --theme-text-secondary: #cccccc;
+    --theme-accent: #00d4ff;
+    --theme-particle-color: #ffffff;
+    --theme-particle-char: '⭐';
+}
+
+/* 桜モード */
+body.theme-sakura {
+    --theme-bg-primary: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+    --theme-bg-secondary: rgba(255, 255, 255, 0.9);
+    --theme-text-primary: #2d3436;
+    --theme-text-secondary: #636e72;
+    --theme-accent: #ff7675;
+    --theme-particle-color: #ff7675;
+    --theme-particle-char: '🌸';
+}
+
+/* 海モード */
+body.theme-ocean {
+    --theme-bg-primary: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    --theme-bg-secondary: rgba(255, 255, 255, 0.9);
+    --theme-text-primary: #2d3436;
+    --theme-text-secondary: #636e72;
+    --theme-accent: #00cec9;
+    --theme-particle-color: #00cec9;
+    --theme-particle-char: '🫧';
+}
+
+/* 基本的な要素にテーマを適用 */
+body {
+    background: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
+    transition: all 0.5s ease;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* カード系の要素 */
+.wallet-container,
+.celebration-container,
+.useful-section,
+.theme-section,
+.news-section,
+.update-section,
+.gift-section,
+.wallet-content,
+.wallet-header,
+.wallet-footer,
+.ticket-card,
+#welcome-screen {
+    background: var(--theme-bg-secondary);
+    color: var(--theme-text-primary);
+    transition: all 0.5s ease;
+}
+
+/* テーマ選択セクション */
+.theme-section {
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.theme-section h2 {
+    color: var(--theme-text-primary);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Dancing Script', cursive;
+}
+
+.theme-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.theme-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: white;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.theme-btn:hover::before {
+    left: 100%;
+}
+
+.theme-btn[data-theme="normal"] {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+}
+
+.theme-btn[data-theme="space"] {
+    background: linear-gradient(45deg, #0c0c0c, #1a1a2e);
+}
+
+.theme-btn[data-theme="sakura"] {
+    background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+    color: #2d3436;
+}
+
+.theme-btn[data-theme="ocean"] {
+    background: linear-gradient(45deg, #74b9ff, #0984e3);
+}
+
+.theme-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.theme-btn.active {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 3px solid #ffd700;
+}
+
+/* パーティクルコンテナ */
+#particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* パーティクルアニメーション */
+.particle {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.7;
+    user-select: none;
+    animation: float 15s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 桜モード専用アニメーション */
+body.theme-sakura .particle {
+    animation: sakura-fall 12s infinite linear;
+}
+
+@keyframes sakura-fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 海モード専用アニメーション */
+body.theme-ocean .particle {
+    animation: bubble-rise 20s infinite linear;
+}
+
+@keyframes bubble-rise {
+    0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* 宇宙モード専用エフェクト */
+body.theme-space #stars-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 見出し要素の色調整 */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--theme-text-primary);
+    transition: color 0.5s ease;
+}
+
+/* 宇宙モード専用のテキストエフェクト */
+body.theme-space h1,
+body.theme-space h2,
+body.theme-space h3 {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .theme-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .theme-btn {
+        width: 200px;
+        margin: 0.5rem 0;
+    }
+    
+    .theme-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .theme-section {
+        margin: 1rem 0;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .theme-section {
+        padding: 1rem;
+    }
+    
+    .theme-btn {
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .theme-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .particle {
+        font-size: 16px;
+    }
+}
+
+/* 特殊効果 */
+.theme-transition {
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* フェードイン効果 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}

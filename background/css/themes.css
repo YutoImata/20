@@ -1,0 +1,405 @@
+/* 背景テーマ管理システム CSS */
+
+/* CSS変数 */
+:root {
+    --theme-text-color: #333333;
+    --theme-card-background: rgba(255, 255, 255, 0.95);
+    --theme-particle-color: #ff6b6b;
+}
+
+/* 基本的なテーマスタイル */
+body {
+    color: var(--theme-text-color);
+    transition: all 0.5s ease;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+/* テーマセクション */
+.theme-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--theme-card-background);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.theme-section h2 {
+    color: var(--theme-text-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Dancing Script', cursive;
+}
+
+.theme-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.theme-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: white;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-btn:nth-child(1) {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+}
+
+.theme-btn:nth-child(2) {
+    background: linear-gradient(45deg, #0c0c0c, #1a1a2e);
+}
+
+.theme-btn:nth-child(3) {
+    background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+    color: #2d3436;
+}
+
+.theme-btn:nth-child(4) {
+    background: linear-gradient(45deg, #74b9ff, #0984e3);
+}
+
+.theme-btn:nth-child(5) {
+    background: linear-gradient(45deg, #fd79a8, #fdcb6e);
+    color: #2d3436;
+}
+
+.theme-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.theme-btn.active {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 3px solid #ffd700;
+}
+
+.theme-btn.active::before {
+    content: '✨';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.2rem;
+}
+
+/* パーティクルセクション */
+.particle-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.particle-section h3 {
+    color: var(--theme-text-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.particle-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.particle-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--theme-particle-color);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--theme-text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.particle-btn:hover {
+    background: var(--theme-particle-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* パーティクルアニメーション */
+.particle {
+    animation: float 15s infinite linear;
+    opacity: 0.8;
+    user-select: none;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 通常モード */
+.theme-normal {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.theme-normal .celebration-container,
+.theme-normal .useful-section,
+.theme-normal .wallet-container,
+.theme-normal .theme-section {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* 宇宙モード */
+.theme-space {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    color: white;
+}
+
+.theme-space .celebration-container,
+.theme-space .useful-section,
+.theme-space .wallet-container,
+.theme-space .theme-section {
+    background: rgba(30, 30, 60, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-space h1,
+.theme-space h2,
+.theme-space h3 {
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.theme-space .particle {
+    animation: space-float 20s infinite linear;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+}
+
+@keyframes space-float {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* 桜モード */
+.theme-sakura {
+    background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+}
+
+.theme-sakura .particle {
+    animation: sakura-fall 12s infinite linear;
+}
+
+@keyframes sakura-fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 海モード */
+.theme-ocean {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+}
+
+.theme-ocean .particle {
+    animation: bubble-rise 18s infinite linear;
+}
+
+@keyframes bubble-rise {
+    0% {
+        transform: translateY(100vh) scale(0.3);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* 夕焼けモード */
+.theme-sunset {
+    background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 50%, #e17055 100%);
+}
+
+.theme-sunset .particle {
+    animation: sparkle-dance 14s infinite linear;
+}
+
+@keyframes sparkle-dance {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(50vh) rotate(180deg) scale(1.2);
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* 星座効果 */
+#star-field {
+    z-index: 0;
+}
+
+/* カード背景の統一 */
+.celebration-container,
+.useful-section,
+.wallet-container,
+.theme-section {
+    background: var(--theme-card-background);
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .theme-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .theme-btn {
+        width: 200px;
+        margin: 0.5rem 0;
+    }
+    
+    .particle-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .particle-btn {
+        width: 180px;
+        margin: 0.3rem 0;
+    }
+    
+    .theme-section h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .theme-section {
+        padding: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .theme-btn {
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .particle-btn {
+        width: 100%;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .theme-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .particle-section h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* 特殊効果 */
+.theme-space .celebration-btn,
+.theme-space .useful-btn,
+.theme-space .wallet-btn {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.theme-space .celebration-btn:hover,
+.theme-space .useful-btn:hover,
+.theme-space .wallet-btn:hover {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+/* 背景オーバーレイ */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* アニメーション遅延 */
+.particle:nth-child(odd) {
+    animation-delay: 2s;
+}
+
+.particle:nth-child(even) {
+    animation-delay: 4s;
+}
+
+.particle:nth-child(3n) {
+    animation-delay: 6s;
+}

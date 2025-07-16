@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cards.forEach(card => card.classList.add('flipped'));
         canFlip = false;
         
-        gameMessage.textContent = '7秒間覚えてください...';
+        gameMessage.textContent = '7秒間覚えてね...';
         gameMessage.style.color = '#ff6b6b';
         
         // カウントダウン表示

@@ -19,19 +19,32 @@ body {
     gap: 1.5rem;
     width: 90%;
     max-width: 400px;
+    align-items: center;
 }
 .home-btn {
-    font-size: 1.2rem;
-    padding: 1rem 0;
-    border-radius: 1.5rem;
-    border: none;
-    background: linear-gradient(90deg, #ffb6c1, #ffe4e1);
-    color: #d94f70;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(255,182,193,0.2);
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    letter-spacing: 0.05em;
+    font-size: 1.2rem !important;
+    padding: 1rem 0 !important;
+    border-radius: 1.5rem !important;
+    border: none !important;
+    background: linear-gradient(90deg, #ffb6c1, #ffe4e1) !important;
+    color: #d94f70 !important;
+    font-weight: bold !important;
+    box-shadow: 0 2px 8px rgba(255,182,193,0.2) !important;
+    cursor: pointer !important;
+    transition: background 0.2s, transform 0.2s !important;
+    letter-spacing: 0.05em !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    min-width: 180px !important;
+    text-align: center !important;
+    display: block !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    overflow: visible !important;
+}
+.home-btn::after {
+    content: none !important;
 }
 .home-btn:hover {
     background: linear-gradient(90deg, #ffe4e1, #ffb6c1);

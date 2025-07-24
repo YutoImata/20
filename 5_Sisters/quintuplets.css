@@ -1,3 +1,71 @@
+#dinner-checkbox-group label {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: #d63384;
+}
+#add-dinner-checkbox {
+    width: 1.5em;
+    height: 1.5em;
+    accent-color: #d63384;
+    margin-right: 0.3em;
+}
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+        padding: 0 2vw;
+    }
+    header {
+        padding: 1rem 0.5rem;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
+    .plan-selector, .event-selector, .calculation-section, .schedule-section, .notes-section {
+        padding: 1rem 0.5rem;
+        margin-bottom: 1.2rem;
+    }
+    .plan-buttons, .event-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .plan-btn, .event-btn {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.7em 0.5em;
+    }
+    .input-section, .result-section {
+        padding: 0.5rem 0;
+    }
+    .input-group label {
+        font-size: 1rem;
+    }
+    .input-group input[type="number"] {
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .cost-breakdown, .total-cost {
+        font-size: 1rem;
+    }
+    .cost-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.1em;
+    }
+    .notes-content ul, .notes-content li {
+        font-size: 1rem;
+    }
+    .input-group {
+        margin-bottom: 0.7em;
+    }
+    #dinner-checkbox-group {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+    }
+}
 * {
     margin: 0;
     padding: 0;

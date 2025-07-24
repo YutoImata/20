@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // 飛行機時刻入力欄
+    const flightDepartureInput = document.getElementById('flight-departure');
+    const flightArrivalInput = document.getElementById('flight-arrival');
+    const flightReturnInput = document.getElementById('flight-return');
+    const dinnerCheckboxGroup = document.getElementById('dinner-checkbox-group');
+    const addDinnerCheckbox = document.getElementById('add-dinner-checkbox');
     const planButtons = document.querySelectorAll('.plan-btn');
     const eventButtons = document.querySelectorAll('.event-btn');
     const planDetails = document.getElementById('plan-details');
@@ -18,6 +24,14 @@ document.addEventListener('DOMContentLoaded', function() {
             currentNights = parseInt(this.dataset.nights);
             updatePlanDetails();
             updateSchedule();
+
+            // 日帰りプラン時のみ夕食追加チェックボックスを表示
+            if (currentNights === 0) {
+                dinnerCheckboxGroup.style.display = '';
+            } else {
+                dinnerCheckboxGroup.style.display = 'none';
+                addDinnerCheckbox.checked = false;
+            }
         });
     });
 
@@ -39,19 +53,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 checkbox.textContent = '☑';
             }
             
-            if (currentNights > 0) {
-                updatePlanDetails();
-            }
+            updatePlanDetails();
         });
     });
     
     // 入力値変更時の更新
     inputs.forEach(input => {
         input.addEventListener('input', function() {
-            if (currentNights > 0) {
-                updatePlanDetails();
-            }
+            updatePlanDetails();
         });
+    });
+
+    // 飛行機時刻入力時もスケジュール自動更新
+    [flightDepartureInput, flightArrivalInput, flightReturnInput].forEach(input => {
+        input.addEventListener('input', function() {
+            updateSchedule();
+        });
+    });
+
+    // 夕食追加チェックボックスの変更時も反映
+    addDinnerCheckbox.addEventListener('change', function() {
+        updatePlanDetails();
     });
     
     function updatePlanDetails() {
@@ -65,16 +87,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const noodlesPrice = parseInt(document.getElementById('noodles-price').value) || 0;
         const mongolPrice = parseInt(document.getElementById('mongol-price').value) || 0;
         const souvenirPrice = parseInt(document.getElementById('souvenir-price').value) || 0;
+        const calbeePrice = parseInt(document.getElementById('calbee-price')?.value) || 0;
         
         const days = currentNights + 1;
-        
-        // 基本費用計算
-        const totalHotelCost = hotelPrice * currentNights;
-        const totalDinnerCost = dinnerPrice * currentNights;
+        // 日帰りの場合はホテル・夕食費0円、朝昼食・交通費は1日分のみ
+        const addDinner = currentNights === 0 && addDinnerCheckbox.checked ? 1 : 0;
+        const totalHotelCost = currentNights === 0 ? 0 : hotelPrice * currentNights;
+        const dinnerCount = currentNights === 0 ? addDinner : currentNights;
+        const totalDinnerCost = dinnerPrice * dinnerCount;
         const totalMealCost = mealPrice * days;
         const totalTransportCost = transportPrice * days;
-        
-        // 選択されたイベント費用計算
+        // イベント費用
         let additionalEventCost = 0;
         let eventDescriptions = [];
         
@@ -90,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function() {
             additionalEventCost += mongolPrice;
             eventDescriptions.push('蒙古タンメン中本');
         }
+        if (selectedEvents.has('calbee')) {
+            additionalEventCost += calbeePrice;
+            eventDescriptions.push('カルビープラス（新千歳空港）');
+        }
         
         const eventDescription = eventDescriptions.length > 0 
             ? eventDescriptions.join(' + ') 
@@ -100,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
                          additionalEventCost + souvenirPrice;
         
         planDetails.innerHTML = `
-            <h4>${currentNights}泊${days}日プラン + ${eventDescription}</h4>
+            <h4>${currentNights === 0 ? '日帰りプラン' : `${currentNights}泊${days}日プラン`} + ${eventDescription}</h4>
             <div class="cost-breakdown">
                 <div class="cost-item">
                     <span>✈️ 往復航空券</span>
@@ -110,10 +137,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span>🏨 ホテル代 (${currentNights}泊)</span>
                     <span>¥${totalHotelCost.toLocaleString()}</span>
                 </div>
-                <div class="cost-item">
-                    <span>🍽️ 夕食代 (${currentNights}回)</span>
-                    <span>¥${totalDinnerCost.toLocaleString()}</span>
-                </div>
+            <div class="cost-item">
+                <span>🍽️ 夕食代 (${dinnerCount}回)</span>
+                <span>¥${totalDinnerCost.toLocaleString()}</span>
+            </div>
                 <div class="cost-item">
                     <span>🥪 朝昼食代 (${days}日)</span>
                     <span>¥${totalMealCost.toLocaleString()}</span>
@@ -144,47 +171,65 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function updateSchedule() {
         const days = currentNights + 1;
-        let scheduleHTML = `<h4>${currentNights}泊${days}日 スケジュール例</h4>`;
-        
-        for (let day = 1; day <= days; day++) {
+        let scheduleHTML = '';
+        // 飛行機時刻取得
+        const dep = flightDepartureInput?.value || '07:00';
+        const arr = flightArrivalInput?.value || '08:40';
+        const ret = flightReturnInput?.value || '20:00';
+
+        if (currentNights === 0) {
+            // 日帰り用スケジュール
+            scheduleHTML += `<h4>日帰りプラン スケジュール例</h4>`;
             scheduleHTML += `<div class="day-schedule">`;
-            scheduleHTML += `<div class="day-title">${day}日目 (${getDateString(day)})</div>`;
-            
-            if (day === 1) {
-                scheduleHTML += `
-                    <div class="schedule-item">🛫 新千歳空港発 → 羽田空港着</div>
-                    <div class="schedule-item">🚇 ホテルへ移動・チェックイン</div>
-                    <div class="schedule-item">🍱 昼食（コンビニ等）</div>
-                    <div class="schedule-item">🗼 東京観光・自由時間</div>
-                    <div class="schedule-item">🍽️ 夕食（外食）</div>
-                `;
-            } else if (day === 2 && currentNights >= 1) {
-                scheduleHTML += `
-                    <div class="schedule-item">🌅 朝食（コンビニ等）</div>
-                    <div class="schedule-item">🎪 <strong>5等分の花嫁イベント</strong> (トヨタアリーナ)</div>
-                    <div class="schedule-item">🍱 昼食（会場付近）</div>
-                    <div class="schedule-item">🛍️ グッズ購入・アフター</div>
-                    ${currentNights > 1 ? '<div class="schedule-item">🍽️ 夕食（外食）</div>' : '<div class="schedule-item">🛫 羽田空港発 → 新千歳空港着</div>'}
-                `;
-            } else if (day === 3 && currentNights >= 2) {
-                scheduleHTML += `
-                    <div class="schedule-item">🌅 朝食（コンビニ等）</div>
-                    <div class="schedule-item">🗼 東京観光・ショッピング</div>
-                    <div class="schedule-item">🍱 昼食（コンビニ等）</div>
-                    ${currentNights > 2 ? '<div class="schedule-item">🍽️ 夕食（外食）</div>' : '<div class="schedule-item">🛫 羽田空港発 → 新千歳空港着</div>'}
-                `;
-            } else if (day === 4 && currentNights === 3) {
-                scheduleHTML += `
-                    <div class="schedule-item">🌅 朝食（コンビニ等）</div>
-                    <div class="schedule-item">🏨 チェックアウト</div>
-                    <div class="schedule-item">🛍️ 最後のお土産購入</div>
-                    <div class="schedule-item">🛫 羽田空港発 → 新千歳空港着</div>
-                `;
-            }
-            
+            scheduleHTML += `<div class="day-title">当日 (5/2(金))</div>`;
+            scheduleHTML += `
+                <div class="schedule-item">🛫 新千歳空港発 ${dep} → 羽田空港着 ${arr}</div>
+                <div class="schedule-item">🚇 会場へ直行</div>
+                <div class="schedule-item">🎪 <strong>5等分の花嫁イベント</strong> (トヨタアリーナ)</div>
+                <div class="schedule-item">🍱 昼食（会場付近）</div>
+                <div class="schedule-item">🛍️ グッズ購入・アフター</div>
+                <div class="schedule-item">🛫 羽田空港発 ${ret} → 新千歳空港着</div>
+            `;
             scheduleHTML += `</div>`;
+        } else {
+            scheduleHTML += `<h4>${currentNights}泊${days}日 スケジュール例</h4>`;
+            for (let day = 1; day <= days; day++) {
+                scheduleHTML += `<div class="day-schedule">`;
+                scheduleHTML += `<div class="day-title">${day}日目 (${getDateString(day)})</div>`;
+                if (day === 1) {
+                    scheduleHTML += `
+                        <div class="schedule-item">🛫 新千歳空港発 ${dep} → 羽田空港着 ${arr}</div>
+                        <div class="schedule-item">🚇 ホテルへ移動・チェックイン</div>
+                        <div class="schedule-item">🍱 昼食（コンビニ等）</div>
+                        <div class="schedule-item">🗼 東京観光・自由時間</div>
+                        <div class="schedule-item">🍽️ 夕食（外食）</div>
+                    `;
+                } else if (day === 2 && currentNights >= 1) {
+                    scheduleHTML += `
+                        <div class="schedule-item">🌅 朝食（コンビニ等）</div>
+                        <div class="schedule-item">🎪 <strong>5等分の花嫁イベント</strong> (トヨタアリーナ)</div>
+                        <div class="schedule-item">🍱 昼食（会場付近）</div>
+                        <div class="schedule-item">🛍️ グッズ購入・アフター</div>
+                        ${currentNights > 1 ? '<div class="schedule-item">🍽️ 夕食（外食）</div>' : `<div class="schedule-item">🛫 羽田空港発 ${ret} → 新千歳空港着</div>`}
+                    `;
+                } else if (day === 3 && currentNights >= 2) {
+                    scheduleHTML += `
+                        <div class="schedule-item">🌅 朝食（コンビニ等）</div>
+                        <div class="schedule-item">🗼 東京観光・ショッピング</div>
+                        <div class="schedule-item">🍱 昼食（コンビニ等）</div>
+                        ${currentNights > 2 ? '<div class="schedule-item">🍽️ 夕食（外食）</div>' : `<div class="schedule-item">🛫 羽田空港発 ${ret} → 新千歳空港着</div>`}
+                    `;
+                } else if (day === 4 && currentNights === 3) {
+                    scheduleHTML += `
+                        <div class="schedule-item">🌅 朝食（コンビニ等）</div>
+                        <div class="schedule-item">🏨 チェックアウト</div>
+                        <div class="schedule-item">🛍️ 最後のお土産購入</div>
+                        <div class="schedule-item">🛫 羽田空港発 ${ret} → 新千歳空港着</div>
+                    `;
+                }
+                scheduleHTML += `</div>`;
+            }
         }
-        
         scheduleDetails.innerHTML = scheduleHTML;
     }
     

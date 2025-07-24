@@ -179,18 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (currentNights === 0) {
             // 日帰り用スケジュール
-            scheduleHTML += `<h4>日帰りプラン スケジュール例</h4>`;
-            scheduleHTML += `<div class="day-schedule">`;
-            scheduleHTML += `<div class="day-title">当日 (5/2(金))</div>`;
-            scheduleHTML += `
-                <div class="schedule-item">🛫 新千歳空港発 ${dep} → 羽田空港着 ${arr}</div>
-                <div class="schedule-item">🚇 会場へ直行</div>
-                <div class="schedule-item">🎪 <strong>5等分の花嫁イベント</strong> (トヨタアリーナ)</div>
-                <div class="schedule-item">🍱 昼食（会場付近）</div>
-                <div class="schedule-item">🛍️ グッズ購入・アフター</div>
-                <div class="schedule-item">🛫 羽田空港発 ${ret} → 新千歳空港着</div>
-            `;
-            scheduleHTML += `</div>`;
         } else {
             scheduleHTML += `<h4>${currentNights}泊${days}日 スケジュール例</h4>`;
             for (let day = 1; day <= days; day++) {

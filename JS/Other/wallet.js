@@ -120,7 +120,7 @@ function calculateTotalValue() {
 // カウントアップアニメーション
 function animateCounter() {
     const amountElement = document.querySelector('.amount');
-    const targetValue = 26200;
+    const targetValue = 25200;
     let currentValue = 0;
     const increment = targetValue / 50;
     

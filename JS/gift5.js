@@ -44,9 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return newArray;
     }
 
-    // ランダムに問題を選択する関数（6問全て使用）
+    // ランダムに5問を選択する関数
     function selectRandomProblems() {
-        problems = shuffleArray(allProblems);
+        const shuffled = shuffleArray(allProblems);
+        problems = shuffled.slice(0, 5); // 9問の中からランダムに5問選択
     }
 
     // 文字列をシャッフルする関数

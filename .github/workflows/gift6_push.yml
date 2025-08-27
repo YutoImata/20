@@ -1,0 +1,22 @@
+name: Gift6 Auto Push Test
+
+on:
+  workflow_dispatch: # 手動実行用（GitHub上でボタン押して実行できます）
+  # schedule:
+  #   - cron: '0 0 1 9 *' # 9月1日0時に自動実行（UTCなのでJSTは-9時間調整）
+
+jobs:
+  push_gift6:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run gift6 push script
+        run: |
+          python 20/Python/gift6_push.py

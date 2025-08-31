@@ -28,12 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const giftDescription = document.getElementById('gift-description');
 
     // デバッグ用：答え表示エリアを追加（コメントアウト）
-    /*
     const debugAnswerDiv = document.createElement('div');
     debugAnswerDiv.id = 'debug-answer';
     debugAnswerDiv.style = 'margin: 1rem 0; font-size: 1.2rem; color: #dc3545; font-weight: bold;';
     gameMessage.parentNode.insertBefore(debugAnswerDiv, gameMessage.nextSibling);
-    */
 
     // 要素が存在するかチェック
     console.log('Start button:', startBtn);
@@ -274,7 +272,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // showDebugAnswer関数をコメントアウト
-    /*
     function showDebugAnswer() {
         if (targetColors.length === 4) {
             debugAnswerDiv.innerHTML = '【答え】' + targetColors.map(c => colorEmojis[c]).join(' ');
@@ -282,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
             debugAnswerDiv.innerHTML = '';
         }
     }
-    */
+    
 
     function winGame() {
         gameMessage.textContent = '🎉 フォーヒット達成！おめでとう！';
@@ -346,16 +343,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // プレゼント開封ボタン
     openGiftBtn.addEventListener('click', function() {
-        openGift('映画館ペアチケット + ポップコーンセット', '好きな映画を2人で楽しめる特別チケット！');
+        openGift();
     });
 
-    consolationGiftBtn.addEventListener('click', function() {
-        openGift('頑張ったで賞！カフェチケット', 'お疲れ様でした！美味しいコーヒーでも飲んでね♪');
-    });
-
-    function openGift(title, description) {
-        giftTitle.textContent = title;
-        giftDescription.textContent = description;
+    function openGift() {
+        // 詳細なプレゼント情報を設定
+        giftTitle.textContent = '9/1日無料券';
+        giftDescription.textContent = '9/1日限定でなんでも買っていいよ！';
+        
+        // 追加の詳細情報があれば設定
+        const utilizationElement = document.getElementById('gift-utilization');
+        const expirationElement = document.getElementById('gift-expiration');
+        
+        if (utilizationElement) {
+            utilizationElement.textContent = '特になし！';
+        }
+        if (expirationElement) {
+            expirationElement.textContent = '9/1日23:59まで';
+        }
+        
         winSection.classList.add('hidden');
         loseSection.classList.add('hidden');
         giftReveal.classList.remove('hidden');

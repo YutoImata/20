@@ -27,6 +27,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const giftTitle = document.getElementById('gift-title');
     const giftDescription = document.getElementById('gift-description');
 
+    // デバッグ用：答え表示エリアを追加
+    const debugAnswerDiv = document.createElement('div');
+    debugAnswerDiv.id = 'debug-answer';
+    debugAnswerDiv.style = 'margin: 1rem 0; font-size: 1.2rem; color: #dc3545; font-weight: bold;';
+    gameMessage.parentNode.insertBefore(debugAnswerDiv, gameMessage.nextSibling);
+
     // 要素が存在するかチェック
     console.log('Start button:', startBtn);
     console.log('Game area:', gameArea);
@@ -64,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let targetColors = [];
     let currentGuess = [];
     let attempts = 0;
-    const maxAttempts = 10;
+    const maxAttempts = 1;
     let gameStarted = false;
 
     // ランダムに4色を選択する関数
@@ -92,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateColorOptions();
         updateGuessButton();
         gameMessage.textContent = '6色から4色を選んで予想しよう！';
+        showDebugAnswer();
         console.log('ゲーム開始処理完了');
     });
 
@@ -264,6 +271,14 @@ document.addEventListener("DOMContentLoaded", function () {
         guessHistory.insertBefore(historyItem, guessHistory.firstChild);
     }
 
+    function showDebugAnswer() {
+        if (targetColors.length === 4) {
+            debugAnswerDiv.innerHTML = '【答え】' + targetColors.map(c => colorEmojis[c]).join(' ');
+        } else {
+            debugAnswerDiv.innerHTML = '';
+        }
+    }
+
     function winGame() {
         gameMessage.textContent = '🎉 フォーヒット達成！おめでとう！';
         winMessage.textContent = `${attempts}回目で見事にフォーヒットを達成しました！`;
@@ -278,6 +293,8 @@ document.addEventListener("DOMContentLoaded", function () {
         correctAnswer.innerHTML = `${targetEmojis}<br>(${targetNames})`;
         loseSection.classList.remove('hidden');
         gameArea.style.pointerEvents = 'none';
+        // プレゼント表示はしない
+        giftReveal.classList.add('hidden');
     }
 
     // リセットボタン
@@ -299,6 +316,28 @@ document.addEventListener("DOMContentLoaded", function () {
         guessHistory.innerHTML = '';
         gameArea.style.pointerEvents = 'auto';
     });
+
+    // 再挑戦ボタン
+    const retryBtn = document.getElementById('retry-btn');
+    if (retryBtn) {
+        retryBtn.addEventListener('click', function() {
+            gameStarted = false;
+            targetColors = [];
+            currentGuess = [];
+            attempts = 0;
+            // UI をリセット
+            startBtn.classList.remove('hidden');
+            gameArea.classList.add('hidden');
+            resetBtn.classList.add('hidden');
+            winSection.classList.add('hidden');
+            loseSection.classList.add('hidden');
+            giftReveal.classList.add('hidden');
+            gameMessage.textContent = 'スタートボタンを押してゲーム開始！';
+            guessHistory.innerHTML = '';
+            gameArea.style.pointerEvents = 'auto';
+            showDebugAnswer();
+        });
+    }
 
     // プレゼント開封ボタン
     openGiftBtn.addEventListener('click', function() {

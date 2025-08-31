@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, nofollow">
@@ -9,14 +10,15 @@
     <link rel="stylesheet" href="../../CSS/gift.css">
     <link rel="stylesheet" href="../../CSS/gift6.css">
 </head>
+
 <body>
     <header>
         <h1 class="animated-title">Celebrating 20 Years</h1>
     </header>
-    
+
     <div class="game-container">
         <h2 class="game-title">🎯 ヒット＆ブロー 🎯</h2>
-        
+
         <div class="game-instructions">
             <h3>ゲームルール</h3>
             <p>1. コンピューターが4色（青・赤・緑・黄・紫・白から重複なし）を決める</p>
@@ -43,7 +45,7 @@
                     <div class="color-option purple" data-color="purple" title="紫">🟣</div>
                     <div class="color-option white" data-color="white" title="白">⚪</div>
                 </div>
-                
+
                 <div class="selected-colors">
                     <h4>あなたの予想</h4>
                     <div class="color-slots">
@@ -54,16 +56,16 @@
                     </div>
                     <button id="clear-btn" class="clear-btn">🗑️ クリア</button>
                 </div>
-                
+
                 <button id="guess-btn" class="guess-btn">予想する</button>
                 <p id="input-error" class="input-error hidden">4色すべて異なる色を選択してください</p>
             </div>
-            
+
             <div class="game-info">
                 <div class="attempts">残り回数: <span id="remaining-attempts">10</span></div>
                 <div class="target-hint">目標: フォーヒット（4ヒット）</div>
             </div>
-            
+
             <div class="history-section">
                 <h3>予想履歴</h3>
                 <div id="guess-history" class="guess-history"></div>
@@ -98,13 +100,14 @@
             </div>
         </div>
     </div>
-    
+
     <footer>
         <p>&copy; 2024 Celebrating 20 Years. All Rights Reserved.</p>
     </footer>
-    
+
     <!-- <script src="../../JS/inputkeys.js"></script> -->
     <script src="../../JS/gift6.js"></script>
     <script defer src="../../JS/background.js"></script>
 </body>
+
 </html>

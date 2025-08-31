@@ -27,11 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const giftTitle = document.getElementById('gift-title');
     const giftDescription = document.getElementById('gift-description');
 
-    // デバッグ用：答え表示エリアを追加
+    // デバッグ用：答え表示エリアを追加（コメントアウト）
+    /*
     const debugAnswerDiv = document.createElement('div');
     debugAnswerDiv.id = 'debug-answer';
     debugAnswerDiv.style = 'margin: 1rem 0; font-size: 1.2rem; color: #dc3545; font-weight: bold;';
     gameMessage.parentNode.insertBefore(debugAnswerDiv, gameMessage.nextSibling);
+    */
 
     // 要素が存在するかチェック
     console.log('Start button:', startBtn);
@@ -70,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let targetColors = [];
     let currentGuess = [];
     let attempts = 0;
-    const maxAttempts = 1;
+    const maxAttempts = 10; // テスト用の1から本来の10に戻す
     let gameStarted = false;
 
     // ランダムに4色を選択する関数
@@ -98,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateColorOptions();
         updateGuessButton();
         gameMessage.textContent = '6色から4色を選んで予想しよう！';
-        showDebugAnswer();
+        // showDebugAnswer(); // コメントアウト
         console.log('ゲーム開始処理完了');
     });
 
@@ -271,6 +273,8 @@ document.addEventListener("DOMContentLoaded", function () {
         guessHistory.insertBefore(historyItem, guessHistory.firstChild);
     }
 
+    // showDebugAnswer関数をコメントアウト
+    /*
     function showDebugAnswer() {
         if (targetColors.length === 4) {
             debugAnswerDiv.innerHTML = '【答え】' + targetColors.map(c => colorEmojis[c]).join(' ');
@@ -278,6 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
             debugAnswerDiv.innerHTML = '';
         }
     }
+    */
 
     function winGame() {
         gameMessage.textContent = '🎉 フォーヒット達成！おめでとう！';
@@ -335,7 +340,7 @@ document.addEventListener("DOMContentLoaded", function () {
             gameMessage.textContent = 'スタートボタンを押してゲーム開始！';
             guessHistory.innerHTML = '';
             gameArea.style.pointerEvents = 'auto';
-            showDebugAnswer();
+            // showDebugAnswer(); // コメントアウト
         });
     }
 

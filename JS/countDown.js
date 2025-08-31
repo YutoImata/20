@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const timerElement = document.getElementById("timer");
         timerElement.innerHTML = `
             <div class="celebration-message">
-                <div class="celebration-text">🎉 お祝いの日です！ 🎉</div>
+                <div class="celebration-text">🎉 お祝いの日！ 🎉</div>
                 <div class="celebration-subtext">ついに20歳だね！本当におめでとう！！！</div>
                 <div class="celebration-emoji">これからもよろしくね！</div>
             </div>
